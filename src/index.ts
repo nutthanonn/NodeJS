@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import { createConnection } from "typeorm";
-import { Client } from "./entities/Client";
+import { Classroom } from "./entities/Classroom";
+import { Student } from "./entities/Student";
 
 const app = express();
 dotenv.config();
@@ -15,7 +16,7 @@ const main = async () => {
       username: process.env.USERNAME,
       password: process.env.PASSWORD,
       database: "postgres",
-      entities: [Client],
+      entities: [Classroom, Student],
       synchronize: true,
     });
 
@@ -27,7 +28,6 @@ const main = async () => {
     console.log("------Connect Success------");
   } catch (error) {
     console.log("--Connect Error--");
-    throw error;
   }
 };
 
