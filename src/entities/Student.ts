@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
+import { Classroom } from "./Classroom";
 
 @Entity("student")
 export class Student extends BaseEntity {
@@ -14,11 +17,15 @@ export class Student extends BaseEntity {
   @Column()
   student_name: string;
 
-  @Column({
-    unique: true,
-  })
+  @PrimaryGeneratedColumn("increment")
   student_number: string;
 
   @CreateDateColumn()
   register_date: Date;
+
+  @ManyToOne(() => Classroom, (classroom) => classroom.student)
+  @JoinColumn({
+    name: "classroom_id",
+  })
+  classroom: Classroom;
 }
