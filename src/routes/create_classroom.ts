@@ -10,7 +10,15 @@ router.post("/api/classroom", async (req, res) => {
     classroom_name: classroom_name,
   });
 
-  await classroom.save();
+  try {
+    await classroom.save();
+  } catch (err) {
+    if (err)
+      return res.json({
+        message: err.message,
+      });
+  }
+
   return res.json(classroom);
 });
 
