@@ -1,3 +1,3 @@
-## เรียน frontend จนเบื่อเเล้วมาเริ่มเรียน backend กันเถอะ
+## ลองใช้ TypeORM กันเถอะ
 
-`Start with TypeORM`
+<img src="./src/assets/Erdiagram-picture.png" width="100%">
