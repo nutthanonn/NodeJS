@@ -5,6 +5,7 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
 } from "typeorm";
 import { Classroom } from "./Classroom";
 
@@ -21,4 +22,7 @@ export class Teacher extends BaseEntity {
     name: "classroom_id",
   })
   classroom: Classroom;
+
+  @CreateDateColumn()
+  register_date: Date;
 }
