@@ -1,11 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import { createConnection } from "typeorm";
-import { Classroom } from "./entities/Classroom";
 import { Student } from "./entities/Student";
 import { Teacher } from "./entities/Teacher";
+import { Classroom } from "./entities/Classroom";
 import { createStudentRouter } from "./routes/create_student";
 import { createClassroomRouter } from "./routes/create_classroom";
+import { deleteClassroomRouter } from "./routes/delete_classroom";
+import { fetchStudentRouter } from "./routes/fetch_student";
+import { createTeacherRouter } from "./routes/create_teacher";
 
 const app = express();
 dotenv.config();
@@ -24,8 +27,17 @@ const main = async () => {
     });
 
     app.use(express.json());
+
+    //create
     app.use(createStudentRouter);
     app.use(createClassroomRouter);
+    app.use(createTeacherRouter);
+
+    //update
+    app.use(fetchStudentRouter);
+
+    //delele
+    app.use(deleteClassroomRouter);
 
     console.log("------Connect Success------");
     app.listen(8000, () => {
