@@ -9,6 +9,9 @@ import {
 import { Student } from "./Student";
 import { Teacher } from "./Teacher";
 
+
+
+
 @Entity("classroom")
 export class Classroom extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
@@ -19,9 +22,13 @@ export class Classroom extends BaseEntity {
   })
   classroom_name: string;
 
-  @OneToMany(() => Student, (student) => student.classroom)
+  @OneToMany(() => Student, (student) => student.classroom, {
+    onDelete: "SET NULL",
+  })
   student: Student;
 
-  @OneToMany(() => Teacher, (teacher) => teacher.classroom)
+  @OneToMany(() => Teacher, (teacher) => teacher.classroom, {
+    onDelete: "SET NULL",
+  })
   teacher: Teacher;
 }
